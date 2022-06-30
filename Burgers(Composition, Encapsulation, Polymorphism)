@@ -1,0 +1,111 @@
+//A burger class and its subclasses that demonstrate the usage of fundamental concepts in Java such as inheritence, polymorphism, encapsulation, composition and method overloading.
+
+public class Hamburger {
+    private String name;
+    private String meat;
+    private double price;
+    private String breadRollType;
+    
+    private String addition1Name;
+    private String addition2Name;
+    private String addition3Name;
+    private String addition4Name;
+    
+    private double addition1Price;
+    private double addition2Price;
+    private double addition3Price;
+    private double addition4Price;
+    
+    public Hamburger(String name, String meat, double price, String breadRollType) {
+        this.name = name;
+        this.meat = meat;
+        this.price = price;
+        this.breadRollType = breadRollType;
+    }
+    
+    public void addHamburgerAddition1(String name, double price) {
+        addition1Price = price;
+        addition1Name = name;
+    }
+    
+    public void addHamburgerAddition2(String name, double price) {
+        addition2Price = price;
+        addition2Name = name;
+    }
+    
+    public void addHamburgerAddition3(String name, double price) {
+        addition3Price = price;
+        addition3Name = name;
+    }
+    
+    public void addHamburgerAddition4(String name, double price) {
+        addition4Price = price;
+        addition4Name = name;
+    }
+    
+    public double itemizeHamburger() {
+        System.out.println("One order of " + name + " on " + breadRollType + " with " + addition1Name + " " + addition2Name + " " + addition3Name + " " + addition4Name);
+        return (price + addition1Price + addition2Price + addition3Price + addition4Price);
+    }
+}
+
+
+
+public class DeluxeBurger extends Hamburger {
+ 
+    public DeluxeBurger() {
+        super("Deluxe", "Bacon & Cheese", 19.10, "Sesame Bun");
+        super.addHamburgerAddition1("Chips", 0);
+        super.addHamburgerAddition2("Drink", 0);
+    }
+    
+    @Override
+    public void addHamburgerAddition1(String name, double price) {
+        System.out.println("No additional items can be added to a deluxe burger.");
+    }
+    
+    @Override
+    public void addHamburgerAddition2(String name, double price) {
+        System.out.println("No additional items can be added to a deluxe burger.");
+    }
+    
+    @Override
+    public void addHamburgerAddition3(String name, double price) {
+        System.out.println("No additional items can be added to a deluxe burger.");
+    }
+    
+    @Override
+    public void addHamburgerAddition4(String name, double price) {
+        System.out.println("No additional items can be added to a deluxe burger.");
+    }
+}
+
+
+public class HealthyBurger extends Hamburger {
+ 
+    private String healthyExtra1Name;
+    private String healthyExtra2Name;
+    
+    private double healthyExtra1Price;
+    private double healthyExtra2Price;
+    
+    public HealthyBurger(String meat, double price) {
+        super("Beyond Burger", meat, price, "Honeywheat Bread");
+    }
+    
+    public void addHealthyAddition1(String name, double price) {
+        healthyExtra1Name = name;
+        healthyExtra1Price = price;
+    }
+    
+    public void addHealthyAddition2(String name, double price) {
+        healthyExtra2Name = name;
+        healthyExtra2Price = price;
+    }
+    
+    @Override
+    public double itemizeHamburger() {
+        System.out.println("One order of Beyond Burger on Honeywheat Bread with " + healthyExtra1Name + " " + healthyExtra2Name);
+        return (super.itemizeHamburger() + healthyExtra1Price + healthyExtra2Price);
+    }
+}
